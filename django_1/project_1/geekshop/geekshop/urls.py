@@ -19,8 +19,6 @@ import mainapp.views as controller
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', controller.index),
-    #path('test/', controller.test),
     path('', controller.main),
     path('products/', controller.products),
     path('contact/', controller.contact),

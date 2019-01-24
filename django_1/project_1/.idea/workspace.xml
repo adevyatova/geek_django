@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c44ed9-2c69-49df-9095-f19b4ccbb61b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geekshop/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/geekshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/geekshop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geekshop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/geekshop/mainapp/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,21 +39,21 @@
         <counts>
           <entry key="bat" value="35" />
           <entry key="html" value="175" />
-          <entry key="py" value="380" />
+          <entry key="py" value="385" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="175" />
           <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Python" value="380" />
+          <entry key="Python" value="385" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geekshop/geekshop/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1989">
@@ -63,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/geekshop/geekshop/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+            <state relative-caret-position="215">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#632#664#0" expanded="true" />
               </folding>
@@ -78,12 +77,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geekshop/mainapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1548352323159" expanded="true" signature="120:125" ph="..." />
-                <marker date="1548352323159" expanded="true" signature="233:238" ph="..." />
+                <marker date="1548357510479" expanded="true" signature="118:123" ph="..." />
               </folding>
             </state>
           </provider>
@@ -105,13 +103,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/geekshop/run.bat" />
-        <option value="$PROJECT_DIR$/geekshop/mainapp/views.py" />
-        <option value="$PROJECT_DIR$/geekshop/geekshop/urls.py" />
         <option value="$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/contact.html" />
         <option value="$PROJECT_DIR$/geekshop/static/style.css" />
         <option value="$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/index.html" />
         <option value="$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/products.html" />
         <option value="$PROJECT_DIR$/geekshop/geekshop/settings.py" />
+        <option value="$PROJECT_DIR$/geekshop/mainapp/views.py" />
+        <option value="$PROJECT_DIR$/geekshop/geekshop/urls.py" />
       </list>
     </option>
   </component>
@@ -141,6 +139,12 @@
               <item name="project_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="project_1" type="462c0819:PsiDirectoryNode" />
               <item name="geekshop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project_1" type="462c0819:PsiDirectoryNode" />
+              <item name="geekshop" type="462c0819:PsiDirectoryNode" />
+              <item name="mainapp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -178,6 +182,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -220,28 +225,6 @@
     <entry file="file://$PROJECT_DIR$/geekshop/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/geekshop/geekshop/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
-          <folding>
-            <element signature="e#632#664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekshop/mainapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1548352323159" expanded="true" signature="120:125" ph="..." />
-            <marker date="1548352323159" expanded="true" signature="233:238" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geekshop/mainapp/templates/mainapp/products.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -274,6 +257,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1989">
           <caret line="117" column="40" lean-forward="true" selection-start-line="117" selection-start-column="40" selection-end-line="117" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekshop/mainapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1548357510479" expanded="true" signature="118:123" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekshop/geekshop/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#632#664#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
