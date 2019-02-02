@@ -2,15 +2,23 @@ from django.shortcuts import render
 from django.http import HttpRequest
 import datetime
 
+from .models import ProductCategory, Product
 
 def index(request: HttpRequest):
     title = 'главная'
+
+    # products = Product.objects.all()[:4]
+    #
+    # content = {'title': title, 'products': products}
+    #
+    # return render(request, 'mainapp/index.html', content)
+
 
     products_list = [
         {
             'name': 'Отличный стул',
             'desc': 'Расположитесь комфортно.',
-            'image_src': 'product-1.jpg',
+            'image_src': 'product-4.jpg',
             'image_href': '/product/1/',
             'alt': 'продукт 1'
         },
