@@ -1,81 +1,74 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.http import HttpRequest, HttpResponse
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm
 from django.contrib import auth
 from django.urls import reverse
 
-from .forms import LoginForm, RegisterForm, UpdateForm
+from authapp.forms import ShopUserEditForm
 
 
-# Create your views here.
-def redirect_to_login(request: HttpRequest):
-    return HttpResponseRedirect('/auth/login')
+def login(request):
+    title = 'вход'
 
+    login_form = ShopUserLoginForm(data=request.POST or None)
 
-def login(request: HttpRequest):
-    title = 'войти на сайт'
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
+    # print('next', next)
 
-    # создать форму для заполнения
-    login_form = LoginForm(data=request.POST)
-
-    # проверить данные из request
     if request.method == 'POST' and login_form.is_valid():
-        login = request.POST['username']
+        username = request.POST['username']
         password = request.POST['password']
 
-        # выполнить аутентификацию
-        user = auth.authenticate(username=login, password=password)
-
+        user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            if 'next' in request.POST.keys():
+                # print('redirect next', request.POST['next'])
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                return HttpResponseRedirect(reverse('main'))
 
     content = {
         'title': title,
-        'login_form': login_form
+        'login_form': login_form,
+        'next': next
     }
+
     return render(request, 'authapp/login.html', content)
 
 
-def logout(request: HttpRequest):
+def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('main'))
 
 
-def register(request: HttpRequest):
+def register(request):
     title = 'регистрация'
 
     if request.method == 'POST':
-        register_form = RegisterForm(request.POST)
+        register_form = ShopUserRegisterForm(request.POST, request.FILES)
 
         if register_form.is_valid():
             register_form.save()
             return HttpResponseRedirect(reverse('auth:login'))
     else:
-        register_form = RegisterForm()
+        register_form = ShopUserRegisterForm()
 
-    content = {
-        'title': title,
-        'reg_form': register_form
-    }
+    content = {'title': title, 'register_form': register_form}
 
     return render(request, 'authapp/register.html', content)
 
 
-def edit(request: HttpRequest):
-    title = 'профиль'
+def edit(request):
+    title = 'редактирование'
 
     if request.method == 'POST':
-        update_form = UpdateForm(request.POST, instance=request.user)
-
-        if update_form.is_valid():
-            update_form.save()
+        edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
+        if edit_form.is_valid():
+            edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))
     else:
-        update_form = UpdateForm(instance=request.user)
+        edit_form = ShopUserEditForm(instance=request.user)
 
-    content = {
-        'title': title,
-        'update_form': update_form
-    }
+    content = {'title': title, 'edit_form': edit_form}
 
     return render(request, 'authapp/edit.html', content)
