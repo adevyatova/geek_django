@@ -1,45 +1,56 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .models import ShopUser
 
-from authapp.models import CustomUser
+from django.contrib.auth.forms import UserChangeForm
 
 
-class LoginForm(AuthenticationForm):
+class ShopUserLoginForm(AuthenticationForm):
     class Meta:
-        model = CustomUser
+        model = ShopUser
         fields = ('username', 'password')
 
     def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
-
+        super(ShopUserLoginForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'  # <input class='form-control' ...
+            field.widget.attrs['class'] = 'form-control'
 
 
-class RegisterForm(UserCreationForm):
+class ShopUserRegisterForm(UserCreationForm):
     class Meta:
-        model = CustomUser
-        fields = ('username', 'age', 'password1', 'password2', 'email', 'first_name')
+        model = ShopUser
+        fields = ('username', 'first_name', 'password1', 'password2', 'email', 'age', 'avatar')
 
     def __init__(self, *args, **kwargs):
-        super(RegisterForm, self).__init__(*args, **kwargs)
-
+        super(ShopUserRegisterForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
+    def clean_age(self):
+        data = self.cleaned_data['age']
+        if data < 18:
+            raise forms.ValidationError("Вы слишком молоды!")
 
-class UpdateForm(UserChangeForm):
+        return data
+
+
+class ShopUserEditForm(UserChangeForm):
     class Meta:
-        model = CustomUser
-        fields = ('username', 'age', 'password', 'email', 'first_name')
+        model = ShopUser
+        fields = ('username', 'first_name', 'email', 'age', 'avatar', 'password')
 
     def __init__(self, *args, **kwargs):
-        super(UpdateForm, self).__init__(*args, **kwargs)
-
+        super(ShopUserEditForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
-
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
+
+    def clean_age(self):
+        data = self.cleaned_data['age']
+        if data < 18:
+            raise forms.ValidationError("Вы слишком молоды!")
+
+        return data

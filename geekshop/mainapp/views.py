@@ -1,8 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpRequest
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpRequest, HttpResponse
+from basketapp.models import Basket
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import datetime
 from .models import ProductCategory, Product
+
+
+def get_current_basket(current_user):
+    if current_user.is_authenticated:
+        items = Basket.objects.filter(user=current_user)
+    else:
+        items = None
+
+    return items
 
 
 def main(request: HttpRequest):
@@ -12,20 +23,56 @@ def main(request: HttpRequest):
 
     return render(request, 'mainapp/index.html', {
         'title': title,
-        'products': products
+        'products': products,
+        'basket': get_current_basket(request.user)
     })
 
 
-def products(request: HttpRequest, id=None):
+def products(request: HttpRequest, id=None, page=1):
     title = 'продукты'
     links_menu = ProductCategory.objects.all()
-    same_products = Product.objects.all()
+
+    if id is not None:
+        same_products = Product.objects.filter(category__pk=id)
+    else:
+        same_products = Product.objects.all()
+
+    provider = Paginator(same_products, 2)
+
+    try:
+        products_provider = provider.page(page)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
+
+    # if request.is_ajax():
+    #     return JsonResponse(products_provider)
 
     return render(request, 'mainapp/products.html', {
         'title': title,
         'links_menu': links_menu,
-        'same_products': same_products
+        'provider': products_provider,
+        'basket': get_current_basket(request.user)
     })
+
+
+def product_detail(request: HttpRequest, id=None):
+    # if id is not None:
+    # item = Product.objects.get(pk=id)
+    item = get_object_or_404(Product, pk=id)
+    same_products = Product.objects.exclude(pk=id).filter(category__pk=item.category_id)
+    links_menu = ProductCategory.objects.all()
+
+    context = {
+        'title': f'Товар: {item.name}',
+        'item': item,
+        'products': same_products,
+        'links_menu': links_menu,
+        'basket': get_current_basket(request.user)
+    }
+
+    return render(request, 'mainapp/details.html', context)
 
 
 def contact(request: HttpRequest):
